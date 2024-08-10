@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Efolio</title>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      padding-top: 56px;
+      background-color: #f8f9fa;
+    }
+    .navbar {
+      background-color: #343a40;
+    }
+    .jumbotron {
+      background-color: #6c757d;
+      color: #ffffff;
+    }
+    .intro{
+      font-size: 20px;
+      padding-top: 20px;
+      padding-bottom: 100px;
+    }
+    .portfolio-card {
+      margin-bottom: 30px;
+      background-color: #ffffff;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    .portfolio-card .card-title {
+      color: #343a40;
+    }
+    .portfolio-card .card-text {
+      color: #6c757d;
+    }
+    .btn-primary {
+      background-color: #dc3545;
+      border-color: #dc3545;
+    }
+    .btn-primary:hover {
+      background-color: #c82333;
+      border-color: #bd2130;
+    }
+    .bg-light {
+      background-color: #f8f9fa;
+    }
+    footer {
+      background-color: #343a40;
+      color: #ffffff;
+    }
+  </style>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+  <a class="navbar-brand" href="#">Efolio</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="portfolio.html">Home</a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="#portfolio">Portfolio</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="resume.html">Templates</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<header class="jumbotron jumbotron-fluid text-center">
+  <div class="container">
+    <h1 class="display-4">Akhil S</h1>
+    <p class="lead">Web Developer & Designer</p>
+  </div>
+</header>
+
+<p class="intro text-center">
+  I'm Akhil , a web designer and developer who isn't afraid to get his hands dirty in both code and color 
+  I believe beautiful design should be functional, <br>and powerful development should be invisible to the user.
+  Let's craft something amazing together. Dive into my projects and see how I can bring your vision to life.
+</p>
+
+<section id="portfolio" class="container">
+  <h2 class="text-center mb-4">Portfolio</h2>
+  <div id="projects" class="row">
+  </div>
+</section>
+
+<section id="contact" class="bg-light py-5">
+  <div class="container">
+    <h2 class="text-center mb-4">Add Projects</h2>
+    <div class="row">
+      <div class="col-md-6 mx-auto">
+        <form id="projectForm">
+          <div class="form-group">
+            <label for="name">Project Name</label>
+            <input type="text" class="form-control" id="projectName" placeholder="Enter project name" required>
+          </div>
+          <div class="form-group">
+            <label for="description">Description</label>
+            <textarea class="form-control" id="projectDescription" rows="3" placeholder="Enter project description" required></textarea>
+          </div>
+          <div class="form-group">
+            <label for="link">Link</label>
+            <input type="text" class="form-control" id="projectLink" placeholder="Enter project link" required>
+          </div>
+          <div class="form-group">
+            <label for="image">Image</label>
+            <input type="file" class="form-control-file" id="projectImage" accept="image/*" required>
+          </div>
+          <button type="submit" class="btn btn-primary">Add Project</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="bg-dark text-white py-4 text-center">
+  <div class="container">
+    <p>&copy; 2024 John Doe</p>
+  </div>
+</footer>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script>
+  $(document).ready(function() {
+    $("#projectForm").submit(function(event) {
+      event.preventDefault();
+      var projectName = $("#projectName").val();
+      var projectDescription = $("#projectDescription").val();
+      var projectLink = $("#projectLink").val();
+      var projectImage = $("#projectImage")[0].files[0]; 
+
+      var formData = new FormData();
+      formData.append('projectName', projectName);
+      formData.append('projectDescription', projectDescription);
+      formData.append('projectLink', projectLink);
+      formData.append('projectImage', projectImage);
+
+      var projectCard = `
+        <div class="col-md-4">
+          <div class="card portfolio-card">
+            <img src="${URL.createObjectURL(projectImage)}" class="card-img-top" alt="${projectName}">
+            <div class="card-body">
+              <h5 class="card-title">${projectName}</h5>
+              <p class="card-text">${projectDescription}</p>
+              <a href="${projectLink}" class="btn btn-primary">View</a>
+            </div>
+          </div>
+        </div>
+      `;
+
+      $("#projects").append(projectCard);
+
+      $("#projectName").val("");
+      $("#projectDescription").val("");
+      $("#projectLink").val("");
+      $("#projectImage").val(""); 
+
+      var $input = $("#projectImage");
+      $input.replaceWith($input.val('').clone(true));
+    });
+  });
+</script>
+</body>
+</html>

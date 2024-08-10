@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Efolio</title>
+    <link rel="stylesheet" type="text/css" href="hpstyle.css">
+
+</head>
+<body>
+<header>
+    <nav class="navbar">
+        <div class="logo">
+            <img src="img/efolio1.jpg" alt="Efolio Logo">
+        </div>
+        <div class="links">
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#aboutus">About Us</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#getstarted">Get Started</a></li>
+                <li><a href="#form">Login</a></li>
+                <li><a href="signup.html">Sign Up</a></li>
+            </ul>
+        </div>
+    </nav>
+    <section class="banner">
+        <div class="tagline">
+            <p>WORK LIKE AN EXPERT, AND LOOK GOOD DOING IT</p>
+        </div>
+        <div class="tag2">
+            <p>Expertly crafted, aesthetic websites for you to show your skills.</p> 
+        </div>
+        <div class="tag3">
+            <p>The beauty of simplicity</p>
+        </div>
+    </section>
+</header>
+<section id="aboutus">
+    <div class="title">
+        <h2>ABOUT US</h2>
+    </div>
+    <div class="content">
+        <div class="para">
+            <p>Work hard, and let it be known with your very own website. A digital platform for you to showcase your endeavors and advance your career. Build elegant, modern websites using our templates and stand out among competition. Your professional image, is our responsibility.</p><br/>
+            <p class="sub">We provide everything you need for your very own website.</p>
+        </div>
+        <div class="aboutimg">
+            <img src="img/about.jpg" alt="About Us Image">
+        </div>
+    </div>
+</section>
+<section id="features">
+    <div class="f_title">
+        <h2>FEATURES</h2>
+    </div>
+    <div class="f_contentA">
+        <img class="fimg1" src="img/feat.jpg" alt="Feature 1 Image">         
+        <div class="f_para">
+            <p class="sub">Impressive website, in minutes</p>
+            <p>Your life's work in an all-encompassing website. It is your story as told by YOU!</p>
+        </div>
+    </div>
+    <div class="f_contentB">            
+        <div class="f_para">
+            <p class="sub">Easy to manage</p>
+            <p>Manage your portfolio with easy access and quick updation of records. Simple to use even if it's your first time.</p>
+        </div>
+        <img class="fimg2" src="img/feat2.jpg" alt="Feature 2 Image">
+    </div>
+    <div class="f_contentA">
+        <img class="fimg1" src="img/feat1.jpg" alt="Feature 3 Image">         
+        <div class="f_para">
+            <p class="sub">Marketing Yourself</p>
+            <p>Increase your presence in the professional world by marketing yout website and advancing your career.</p>
+        </div>
+    </div>
+</section>
+<section class="parallax">
+
+</section>
+<section id="getstarted">
+    <div class="p_logo">
+        <img src="img/profile.png" alt="Profile Logo">
+    </div>
+    <div class="start">
+        <p>GET STARTED<br>CREATE YOUR ONLINE PORTFOLIO NOW</p>
+    </div>
+    <div class="steps">
+        <div class="step">
+            <p class="number">1</p>
+            <hr>
+            <p class="do">Sign up with Efolio</p>
+        </div>
+        <div class="step">
+            <p class="number">2</p>
+            <hr>
+            <p class="do">Add your content for your website</p>
+        </div>
+        <div class="step">
+            <p class="number">3</p>
+            <hr>
+            <p class="do">Select your theme</p>
+        </div>
+    </div>
+    <div class="startnow">
+        <a href="signup.html">Start your account now</a>
+    </div>
+</section>
+
+<section class="service">
+    <h2>YOU CAN INCLUDE:</h2>
+    <div class="servicebox">
+        <div class="box">
+            <img src="img/icon1.png" alt="Degree Icon">
+            <p>Degrees</p>
+        </div>
+        <div class="box">
+            <img src="img/icon2.png" alt="Projects Icon">
+            <p>Projects</p>
+        </div>
+        <div class="box">
+            <img src="img/icon3.png" alt="Certificates Icon">
+            <p>Certificates</p>
+        </div>
+    </div>
+    <br>
+    <div class="servicebox">
+        <div class="box">
+            <img src="img/icon4.png" alt="Experience Icon">
+            <p>Experience</p>
+        </div>
+        <div class="box">
+            <img src="img/icon5.png" alt="Extra-Curricular Icon">
+            <p>Extra-Curricular</p>
+        </div>
+        <div class="box">
+            <img src="img/icon6.png" alt="Expertise Icon">
+            <p>Expertise</p>
+        </div>
+    </div>
+    <h2>AND MUCH MORE...</h2>
+</section>
+
+<section id="form">
+    <form>  
+        <div class="login">
+            <div class="head">
+                <p>Login</p>
+            </div>
+            <div class="login_email">
+                <input type="text" id="lemail" name="email" placeholder="Email" required>
+            </div>
+            <div class="login_pw">
+                <input type="password" id="lpassword" name="password" placeholder="Password" required>
+            </div>
+            <div class="submitbtn">
+                <button id="loginBtn">Login</button><br>
+            </div>
+        </div>
+    </form>
+</section>
+<footer>
+    <p>All services courtesy of Efolio.com<br>For further details, contact us at xyz@gmail.com</p>
+</footer>
+
+<script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-app.js";
+    import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-auth.js";
+    import { getDatabase, ref, set } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-database.js";
+
+    const firebaseConfig = {
+            apiKey: "AIzaSyDSXZet8piQ9m24_PKdxSGkyXdZTVrs_g0",
+            authDomain: "miniproject-e53b7.firebaseapp.com",
+            projectId: "miniproject-e53b7",
+            storageBucket: "miniproject-e53b7.appspot.com",
+            messagingSenderId: "223817038410",
+            appId: "1:223817038410:web:679f6dba97b668397404b3"
+        };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth();
+    const db = getDatabase();
+
+    const loginEmailInput = document.getElementById("lemail");
+    const loginPasswordInput = document.getElementById("lpassword");
+    const loginFormSubmit = document.getElementById("loginBtn");
+        
+    loginBtn.addEventListener('click', function (e) {
+        e.preventDefault();
+        const email = loginEmailInput.value;
+        const password = loginPasswordInput.value;
+        signInWithEmailAndPassword(auth, email, password)
+            .then((userCredential) => {
+                const user = userCredential.user;
+                alert("Login successful");
+                window.location.href = "portfolio.html";
+            })
+            .catch((error) => {
+                const errorCode = error.code;
+                const errorMessage = error.message;
+                alert("Error: " + errorMessage);
+            });
+    });
+    
+</script>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-app.js";
+    import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-auth.js";
+    import { getDatabase, ref, set } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-database.js";
+
+    const firebaseConfig = {
+            apiKey: "AIzaSyDSXZet8piQ9m24_PKdxSGkyXdZTVrs_g0",
+            authDomain: "miniproject-e53b7.firebaseapp.com",
+            projectId: "miniproject-e53b7",
+            storageBucket: "miniproject-e53b7.appspot.com",
+            messagingSenderId: "223817038410",
+            appId: "1:223817038410:web:679f6dba97b668397404b3"
+        };
+
+    const app = initializeApp(firebaseConfig);
+        const auth = getAuth();
+        const db = getDatabase();
+
+        const loginEmailInput = document.getElementById("lemail");
+        const loginPasswordInput = document.getElementById("lpassword");
+        const loginFormSubmit = document.getElementById("loginBtn");
+        
+        loginBtn.addEventListener('click', function (e) {
+            e.preventDefault();
+            const email = loginEmailInput.value;
+            const password = loginPasswordInput.value;
+            signInWithEmailAndPassword(auth, email, password)
+                .then((userCredential) => {
+                    // Signed in
+                    const user = userCredential.user;
+                    alert("Login successful");
+                    window.location.href = "abc.html";
+                })
+                .catch((error) => {
+                    const errorCode = error.code;
+                    const errorMessage = error.message;
+                    alert("Error: " + errorMessage);
+                });
+        });

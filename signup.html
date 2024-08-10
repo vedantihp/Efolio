@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="signupstyle.css">
+    <title>Sign Up</title>
+</head>
+
+<body>
+    <section id="container">
+        <form>
+            <div class="signup">
+                <div class="head">
+                    <p>Sign Up</p>
+                </div>
+                <div class="signup-name">
+                    <input type="text" name="name" placeholder="Username" id="username" required>
+                </div>
+                <div class="signup-email">
+                    <input type="email" name="email" placeholder="Email" id="email" required>
+                </div>
+                <div class="signup-pw">
+                    <input type="password" name="password" id="password" placeholder="Password" required>
+                </div>
+                <div class="submitbtn">
+                    <button id="signUpFormSubmit">Sign Up</button>
+                </div>
+            </div>
+        </form>
+    </section>
+    
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-app.js";
+        import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-auth.js";
+        import { getDatabase, ref, set } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-database.js";
+    
+        const firebaseConfig = {
+            apiKey: "AIzaSyDSXZet8piQ9m24_PKdxSGkyXdZTVrs_g0",
+            authDomain: "miniproject-e53b7.firebaseapp.com",
+            projectId: "miniproject-e53b7",
+            storageBucket: "miniproject-e53b7.appspot.com",
+            messagingSenderId: "223817038410",
+            appId: "1:223817038410:web:679f6dba97b668397404b3"
+        };
+    
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth();
+        const db = getDatabase();
+    
+        const usernameInput = document.getElementById("username");
+        const emailInput = document.getElementById("email");
+        const passwordInput = document.getElementById("password");
+        const signUpFormSubmit = document.getElementById("signUpFormSubmit");
+    
+        signUpFormSubmit.addEventListener('click', function (e) {
+            e.preventDefault();
+            if (validateForm()) {
+                createUserWithEmailAndPassword(auth, emailInput.value, passwordInput.value)
+                    .then((userCredential) => {
+                        const user = userCredential.user;
+                        const userId = user.uid;
+                        const username = usernameInput.value;
+                        set(ref(db, 'users/' + userId), {
+                            username: username,
+                            email: emailInput.value,
+                            password: passwordInput.value
+                        })
+                        .then(() => {
+                            alert("Signup successful");
+                            window.location.href = "homepage.html";
+                        })
+                        .catch((error) => {
+                            const errorCode = error.code;
+                            const errorMessage = error.message;
+                            alert("Error: " + errorMessage);
+                        });
+                    })
+                    .catch((error) => {
+                        const errorCode = error.code;
+                        const errorMessage = error.message;
+                        alert("Error: " + errorMessage);
+                    });
+            }
+        });
+    
+        function validateForm() {
+            const username = usernameInput.value.trim();
+            const email = emailInput.value.trim();
+            const password = passwordInput.value.trim();
+    
+            if (username.length < 6) {
+                alert("Username must be at least 6 characters long.");
+                return false;
+            }
+    
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                alert("Please enter a valid email address.");
+                return false;
+            }
+    
+            if (password.length < 6 || password.length > 10) {
+                alert("Password must be between 6 and 10 characters long.");
+                return false;
+            }
+            const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*]).{6,10}$/;
+            if (!passwordRegex.test(password)) {
+                alert("Password must contain at least one uppercase letter, one lowercase letter, one digit, and one special character.");
+                return false;
+            }
+              
+            return true;
+        }
+
+    </script>
+</body>
+</html>

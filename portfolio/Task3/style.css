@@ -1,0 +1,48 @@
+body{
+ background-image: linear-gradient(rgb(230, 89, 110), #FF1493);
+}
+
+
+li{
+    list-style-type: none;
+    display: inline;
+    padding: 10px;
+}
+
+nav{
+    margin-top: 70px;
+    font-size: larger;
+    color: #FF1493;
+    width: 40%;
+    margin: auto;
+}
+
+#box{
+    width: 1350px; 
+    height: 630px; 
+    padding: 40px; 
+    margin: 40px; 
+    background-color: white;
+    color: #FF1493;
+}
+
+button{
+    background-color: #FF1493;
+    color: white;
+    border: #FF1493;
+    float: left;
+    font-size: larger;
+    padding: 10px;
+}
+img{
+    float: right;
+}
+
+div{
+    margin-top: 100px;
+    font-size: large;
+}
+
+h1{
+    font-size: 60px;
+}
